@@ -47,6 +47,16 @@ class World
   end
 
   def to_s
-    @cells.map { |row| row.join }.join("\n")
+    string = ""
+
+    (0...@height).each do |y|
+      (0...@width).each do |x|
+        string << self[x][y].to_s
+      end
+
+      string << "\n"
+    end
+
+    string
   end
 end
