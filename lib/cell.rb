@@ -28,4 +28,13 @@ class Cell
   def revive!
     @alive = true
   end
+
+  def next!
+    if alive?
+      die! if @neighbours < 2 || # Rule 1
+              @neighbours > 3    # Rule 3
+    else
+      revive! if @neighbours == 3 # Rule 4
+    end
+  end
 end
