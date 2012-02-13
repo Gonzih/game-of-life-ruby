@@ -1,15 +1,38 @@
 require 'spec_helper'
 
-describe 'Cell' do
-  describe 'Rule #1: Any live cell with fewer than two live neighbours dies, as if caused by under-population.' do
-  end
+describe Cell do
+  describe 'utilites methods' do
+    let (:cell) { Cell.new(rand) }
 
-  describe 'Rule #2: Any live cell with two or three live neighbours lives on to the next generation.' do
-  end
+    it '#alive? method should return cell state' do
+      cell.alive = true
+      cell.alive?.should be_true
+      cell.alive = false
+      cell.alive?.should be_false
+    end
 
-  describe 'Rule #3: Any live cell with more than three live neighbours dies, as if by overcrowding.' do
-  end
+    it '#to_s method should render it state' do
+      cell.alive = true
+      cell.to_s.should == 'o'
+      cell.alive = false
+      cell.to_s.should == ' '
+    end
 
-  describe 'Rule #4: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.' do
+    it '#to_i method should return it state' do
+      cell.alive = true
+      cell.to_i.should == 1
+      cell.alive = false
+      cell.to_i.should == 0
+    end
+
+    it '#die! method kills cell' do
+      cell.die!
+      cell.alive?.should be_false
+    end
+
+    it '#revive method revives cell' do
+      cell.revive!
+      cell.alive?.should be_true
+    end
   end
 end
