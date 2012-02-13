@@ -18,7 +18,7 @@ class World
   def next!
     @cells.each_with_index do |col, x|
       col.each_with_index do |cell, y|
-        cell.neighbors = alive_neighbours(x, y)
+        cell.neighbours = alive_neighbours(x, y)
       end
     end
 
