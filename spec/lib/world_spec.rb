@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe World do
   describe 'utilites methods' do
-    let (:world) { world = World.new(3, 6, false) }
+    let (:world) { World.new(3, 6, false) }
 
     it 'creates new world with cells' do
       world.cells.count.should       == 3
@@ -19,13 +19,57 @@ describe World do
         world[1][2].alive?.should be_true
       end
     end
+  end
 
-    describe '#alive_neighbours' do
-      it 'detects neighbour on the up left' do
-        world[1][2].revive!
-        world[2][2].revive!
-        world.alive_neighbours(1, 1).should == 2
-      end
+  describe '#alive_neighbours' do
+    let (:world) { World.new(3, 3, false) }
+
+    # top row
+    it 'detects neighbour on the top left' do
+      world[0][0].revive!
+      world.alive_neighbours(1, 1).should == 1
+    end
+
+    it 'detects neighbour on the top left' do
+      world[0][1].revive!
+      world.alive_neighbours(1, 1).should == 1
+    end
+
+    it 'detects neighbour on the top right' do
+      world[0][2].revive!
+      world.alive_neighbours(1, 1).should == 1
+    end
+
+    # middle row
+    it 'detects neighbour on the left' do
+      world[1][0].revive!
+      world.alive_neighbours(1, 1).should == 1
+    end
+
+    it 'detects neighbour on the right' do
+      world[1][2].revive!
+      world.alive_neighbours(1, 1).should == 1
+    end
+
+    # bottom row
+    it 'detects neighbour on the bottom left' do
+      world[2][0].revive!
+      world.alive_neighbours(1, 1).should == 1
+    end
+
+    it 'detects neighbour on the bottom left' do
+      world[2][1].revive!
+      world.alive_neighbours(1, 1).should == 1
+    end
+
+    it 'detects neighbour on the bottom right' do
+      world[2][2].revive!
+      world.alive_neighbours(1, 1).should == 1
+    end
+
+    it 'should not detect itself as neighbour' do
+      world[1][1].revive!
+      world.alive_neighbours(1, 1).should == 0
     end
   end
 
