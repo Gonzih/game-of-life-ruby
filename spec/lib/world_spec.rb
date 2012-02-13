@@ -73,6 +73,25 @@ describe World do
     end
   end
 
+  describe '#next!' do
+    let (:world) { World.new(3, 3, false) }
+
+    it 'should call #neighbour= and #next method to all cells' do
+      cell = double('cell')
+      cell.stub(:to_i).and_return(0)
+      cell.should_receive(:next!).exactly(9).times
+      cell.should_receive(:neighbours=).exactly(9).times
+
+      world.cells = Array.new(world.width) do
+        Array.new(world.height) do
+          cell
+        end
+      end
+
+      world.next!
+    end
+  end
+
   describe 'Rule #1: Any live cell with fewer than two live neighbours dies, as if caused by under-population.' do
   end
 

@@ -1,5 +1,6 @@
 class World
   attr_accessor :cells
+  attr_reader   :height, :width
 
   def initialize(width, height, seed_probability = nil)
     seed_probability = rand if seed_probability.nil?
