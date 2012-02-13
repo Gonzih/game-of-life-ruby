@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Cell do
+describe GameOfLife::Cell do
   describe 'utilites methods' do
-    let (:cell) { Cell.new(rand) }
+    let (:cell) { GameOfLife::Cell.new(rand) }
 
     it '#alive? method should return cell state' do
       cell.alive = true
@@ -36,7 +36,7 @@ describe Cell do
     end
 
     describe '#next' do
-      let (:cell) { Cell.new(true) }
+      let (:cell) { GameOfLife::Cell.new(true) }
 
       it 'should kill alive cell with fewer than 2 live neighbours' do
         cell.neighbours = 1

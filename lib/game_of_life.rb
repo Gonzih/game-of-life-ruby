@@ -1,8 +1,3 @@
-require 'bundler'
-
-if defined?(Bundler)
-  Bundler.require(:default)
-end
-
-require_relative 'cell'
-require_relative 'world'
+require 'game_of_life/version'
+require 'game_of_life/world'
+require 'game_of_life/cell'

@@ -1,9 +1,6 @@
 require 'bundler'
-if defined?(Bundler)
-  Bundler.require(:default, :test)
-end
-
 require 'simplecov'
 SimpleCov.start
+require 'game_of_life'
 
-Dir[File.join(File.dirname(__FILE__),'../lib/**/*.rb')].each {|f| require f}
+

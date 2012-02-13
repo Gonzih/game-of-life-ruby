@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe World do
+describe GameOfLife::World do
   describe 'utilites methods' do
-    let (:world) { World.new(3, 6, false) }
+    let (:world) { GameOfLife::World.new(3, 6, false) }
 
     it 'creates new world with cells' do
       world.cells.count.should       == 3
@@ -22,7 +22,7 @@ describe World do
   end
 
   describe '#alive_neighbours' do
-    let (:world) { World.new(3, 3, false) }
+    let (:world) { GameOfLife::World.new(3, 3, false) }
 
     # top row
     it 'detects neighbour on the top left' do
@@ -74,7 +74,7 @@ describe World do
   end
 
   describe '#next!' do
-    let (:world) { World.new(3, 3, false) }
+    let (:world) { GameOfLife::World.new(3, 3, false) }
 
     it 'should call #neighbour= and #next method to all cells' do
       cell = double('cell')
@@ -93,7 +93,7 @@ describe World do
   end
 
   describe '#to_s' do
-    let (:world) { World.new(3, 5, false) }
+    let (:world) { GameOfLife::World.new(3, 5, false) }
 
     it 'should render lines in count equal to height' do
       world.to_s.lines.count.should == world.height
