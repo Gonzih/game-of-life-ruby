@@ -1,8 +1,4 @@
-require 'bundler'
-Bundler.require(:default) if defined?(Bundler)
-
-require './lib/world'
-require './lib/cell'
+require './lib/game_of_life'
 
 height = `tput lines`.to_i || 40
 width  = `tput cols`.to_i  || 40

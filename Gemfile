@@ -1,3 +1,7 @@
 source "http://rubygems.org"
-gem 'rspec'
+
 gem 'guard-rspec', require: false
+
+group :test do
+  gem 'rspec'
+end
