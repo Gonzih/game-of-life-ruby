@@ -92,15 +92,15 @@ describe World do
     end
   end
 
-  describe 'Rule #1: Any live cell with fewer than two live neighbours dies, as if caused by under-population.' do
-  end
+  describe '#to_s' do
+    let (:world) { World.new(3, 5, false) }
 
-  describe 'Rule #2: Any live cell with two or three live neighbours lives on to the next generation.' do
-  end
+    it 'should render lines in count equal to height' do
+      world.to_s.lines.count.should == world.height
+    end
 
-  describe 'Rule #3: Any live cell with more than three live neighbours dies, as if by overcrowding.' do
-  end
-
-  describe 'Rule #4: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.' do
+    it' should render cols in count equal to width' do
+      world.to_s.lines.first.length.should == world.width + 1
+    end
   end
 end
