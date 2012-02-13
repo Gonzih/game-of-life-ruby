@@ -4,11 +4,14 @@ Bundler.require(:default) if defined?(Bundler)
 require './lib/world'
 require './lib/cell'
 
-world = World.new(4, 3)
+height = `tput lines`.to_i || 40
+width  = `tput cols`.to_i  || 40
 
-10.times do
+world = World.new(width, height)
+
+loop do
+  system('clear')
   puts world
   world.next!
-  sleep(2)
-  system('clear')
+  sleep(0.1)
 end
