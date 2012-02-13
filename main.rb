@@ -10,8 +10,9 @@ width  = `tput cols`.to_i  || 40
 world = World.new(width, height)
 
 loop do
+  output = world.to_s
   system('clear')
-  puts world
+  puts output
   world.next!
   sleep(0.1)
 end
