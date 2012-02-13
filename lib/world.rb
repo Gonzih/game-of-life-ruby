@@ -4,6 +4,9 @@ class World
   def initialize(width, height, seed_probability = nil)
     seed_probability = rand if seed_probability.nil?
 
+    @width  = width
+    @height = height
+
     @cells = Array.new(width) do
       Array.new(height) do
         Cell.new(seed_probability)
@@ -27,13 +30,19 @@ class World
 
   def alive_neighbours(x, y)
     [
-      [-1, 0],  [1, 0],          # sides
-      [-1, 1],  [0, 1],  [1, 1], # over
-      [-1, -1], [0, -1], [1, -1] # under
+      [-1, -1], [0, -1], [1, -1],  # over
+      [-1,  0],          [1,  0],  # sides
+      [-1,  1], [0,  1], [1,  1]   # under
     ].inject(0) do |sum, pos|
       _x = x + pos[0]
       _y = y + pos[1]
-      sum + @cells[_x][_y].to_i
+
+      # if we in the world sizes
+      if _x >= 0 && _y >= 0 && _x < @width && _y < @height
+        sum += self[_x][_y].to_i
+      end
+
+      sum
     end
   end
 

@@ -30,35 +30,35 @@ describe World do
       world.alive_neighbours(1, 1).should == 1
     end
 
-    it 'detects neighbour on the top left' do
-      world[0][1].revive!
+    it 'detects neighbour on the top' do
+      world[1][0].revive!
       world.alive_neighbours(1, 1).should == 1
     end
 
     it 'detects neighbour on the top right' do
-      world[0][2].revive!
+      world[2][0].revive!
       world.alive_neighbours(1, 1).should == 1
     end
 
     # middle row
     it 'detects neighbour on the left' do
-      world[1][0].revive!
+      world[0][1].revive!
       world.alive_neighbours(1, 1).should == 1
     end
 
     it 'detects neighbour on the right' do
-      world[1][2].revive!
+      world[2][1].revive!
       world.alive_neighbours(1, 1).should == 1
     end
 
     # bottom row
     it 'detects neighbour on the bottom left' do
-      world[2][0].revive!
+      world[0][2].revive!
       world.alive_neighbours(1, 1).should == 1
     end
 
-    it 'detects neighbour on the bottom left' do
-      world[2][1].revive!
+    it 'detects neighbour on the bottom' do
+      world[1][2].revive!
       world.alive_neighbours(1, 1).should == 1
     end
 
