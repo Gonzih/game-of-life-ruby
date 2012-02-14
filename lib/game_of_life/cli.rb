@@ -11,9 +11,12 @@ module GameOfLife
                   aliases: '-r',
                   desc: 'which renderer you want to use.'
     def start
-      if options['renderer'] == 'cli'
+      case options['renderer']
+      when 'cli'
         game = GameOfLife::Renderers::Cli.new
         game.run
+      else
+        raise 'Undefined renderer was called'
       end
     end
   end
