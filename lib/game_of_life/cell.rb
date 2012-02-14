@@ -14,10 +14,6 @@ module GameOfLife
       @alive
     end
 
-    def to_s
-      if alive? then 'o' else ' ' end
-    end
-
     def to_i
       if alive? then 1 else 0 end
     end

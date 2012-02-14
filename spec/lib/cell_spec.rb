@@ -11,13 +11,6 @@ describe GameOfLife::Cell do
       cell.alive?.should be_false
     end
 
-    it '#to_s method should render it state' do
-      cell.alive = true
-      cell.to_s.should == 'o'
-      cell.alive = false
-      cell.to_s.should == ' '
-    end
-
     it '#to_i method should return it state' do
       cell.alive = true
       cell.to_i.should == 1

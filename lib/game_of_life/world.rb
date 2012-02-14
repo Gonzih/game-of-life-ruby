@@ -47,19 +47,5 @@ module GameOfLife
         sum
       end
     end
-
-    def to_s
-      string = ""
-
-      (0...@height).each do |y|
-        (0...@width).each do |x|
-          string << self[x][y].to_s
-        end
-
-        string << "\n"
-      end
-
-      string
-    end
   end
 end

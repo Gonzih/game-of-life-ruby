@@ -91,16 +91,4 @@ describe GameOfLife::World do
       world.next!
     end
   end
-
-  describe '#to_s' do
-    let (:world) { GameOfLife::World.new(3, 5, false) }
-
-    it 'should render lines in count equal to height' do
-      world.to_s.lines.count.should == world.height
-    end
-
-    it' should render cols in count equal to width' do
-      world.to_s.lines.first.length.should == world.width + 1
-    end
-  end
 end
