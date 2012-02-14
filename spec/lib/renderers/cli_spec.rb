@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe GameOfLife::Renderers::Cli do
-  let (:game) { GameOfLife::Renderers::Cli::Renderer.new }
+  let (:game) { GameOfLife::Renderers::Cli.new }
 
   describe GameOfLife::Cell do
     let (:cell) { GameOfLife::Cell.new(false) }

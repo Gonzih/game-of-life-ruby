@@ -15,6 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = GameOfLife::VERSION
 
+  gem.add_dependency 'thor',     '~> 0.14.6'
+
   gem.add_development_dependency 'bundler',     '>= 1.0'
   gem.add_development_dependency 'rspec',       '~> 2.8'
   gem.add_development_dependency 'guard',       '~> 1.0.0'

@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'game_of_life'
+require 'game_of_life/cli'
+
+GameOfLife::Cli.start
