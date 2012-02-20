@@ -39,7 +39,7 @@ module GameOfLife
                 @_tmp[tmp_key] = cell(_x, _y, _x + @cell_size, _y + @cell_size)
               else
                 if @_tmp[tmp_key]
-                  canvas.delete(@_tmp[tmp_key]) 
+                  canvas.delete(@_tmp[tmp_key])
                   @_tmp[tmp_key] = nil
                 end
               end
