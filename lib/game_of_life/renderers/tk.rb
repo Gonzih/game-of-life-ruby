@@ -1,4 +1,8 @@
-require 'tk'
+begin
+  require 'tk'
+rescue LoadError
+  STDERR.puts 'Please install Tk Bindings for ruby first'
+end
 
 module GameOfLife
   module Renderers
