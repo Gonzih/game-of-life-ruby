@@ -2,6 +2,7 @@ begin
   require 'tk'
 rescue LoadError
   STDERR.puts 'Please install Tk Bindings for ruby first'
+  exit
 end
 
 module GameOfLife
