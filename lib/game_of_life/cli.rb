@@ -14,10 +14,13 @@ module GameOfLife
       case options['renderer']
       when 'cli'
         game = GameOfLife::Renderers::Cli.new
-        game.run
+      when 'tk'
+        game = GameOfLife::Renderers::TK.new
       else
         raise 'Undefined renderer was called'
       end
+
+      game.run
     end
   end
 end
