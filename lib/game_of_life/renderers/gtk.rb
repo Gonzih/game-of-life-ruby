@@ -18,6 +18,7 @@ module GameOfLife
     class Window < Gtk::Window
       def initialize
         @cell_size = 5
+        @_tmp = {}
 
         super
 
@@ -46,8 +47,13 @@ module GameOfLife
       def init_ui
         @darea = Gtk::DrawingArea.new
 
-        @darea.signal_connect 'expose_event' do
-          on_expose
+        @darea.signal_connect('expose_event') do
+          Gtk.timeout_add(100) do
+            clear
+            on_expose
+
+            false
+          end
         end
 
         add(@darea)
@@ -67,9 +73,14 @@ module GameOfLife
         cr.paint
       end
 
-      def cell(x1, y1, w, h)
-        cr.set_source_rgb(0, 0, 0)
-        cr.rectangle(x1, y1, w, h)
+      def cell(x1, y1, size, alive = true)
+        if alive
+          cr.set_source_rgb(0, 0, 0)
+        else
+          cr.set_source_rgb(1, 1, 1)
+        end
+
+        cr.rectangle(x1, y1, size, size)
         cr.fill
       end
 
@@ -78,13 +89,21 @@ module GameOfLife
       end
 
       def world_render
-        clear
-
         world.cells.each_with_index do |col, x|
           col.each_with_index do |_cell, y|
             _x = x * @cell_size
             _y = y * @cell_size
-            cell(_x, _y, @cell_size, @cell_size) if _cell.alive?
+            key = "#{x}:#{y}"
+
+            if _cell.alive?
+              cell(_x, _y, @cell_size)
+              @_tmp[key] = true
+            else
+              if @_tmp[key]
+                cell(_x, _y, @cell_size, false)
+                @_tmp[key] = false
+              end
+            end
           end
         end
 
