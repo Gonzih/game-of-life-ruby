@@ -17,15 +17,14 @@ module GameOfLife
         get_sizes
         tk_setup
         world_setup
-        #@tk_loop.join
-        #@world_loop.join
-        world_render
+        @world_loop.join
       end
 
       def world_setup
         @world = GameOfLife::World.new(@height / @cell_size, @width / @cell_size, )
 
-        #@world_loop = Thread.new { world_render }
+        @world_loop = Thread.new { world_render }
+        @world_loop.abort_on_exception = true
       end
 
       def world_render
