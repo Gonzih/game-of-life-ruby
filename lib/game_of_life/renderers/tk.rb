@@ -21,7 +21,7 @@ module GameOfLife
       end
 
       def world_setup
-        @world = GameOfLife::World.new(@height / @cell_size, @width / @cell_size, )
+        @world = GameOfLife::World.new(@width / @cell_size, @height / @cell_size, )
 
         @world_loop = Thread.new { world_render }
         @world_loop.abort_on_exception = true
