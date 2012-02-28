@@ -61,7 +61,7 @@ module GameOfLife
 
       def on_expose
         Gtk.timeout_remove(@_timeout_id) if @_timeout_id
-        @_timeout_id = Gtk.timeout_add(1000) { self.world_render }
+        @_timeout_id = Gtk.timeout_add(100) { self.world_render }
       end
 
       def cr
