@@ -18,7 +18,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Execute for more information:
+    $ ruby_game_of_life help start
+
+## Renderers
+
+Cli - console renderer.
+Tk  - Tk renderer, uses TkCanvas. Depends on 'tk' installation.
+Gtk - Gtk renderer, uses Cairo library. Depends on 'gtk2' gem.
 
 ## Contributing
 
