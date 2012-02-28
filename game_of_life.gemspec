@@ -22,4 +22,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard',       '~> 1.0.0'
   gem.add_development_dependency 'guard-rspec', '~> 0.6.0'
   gem.add_development_dependency 'simplecov',   '~> 0.5.4'
+  gem.add_development_dependency 'gtk2',        '~> 1.1.2'
 end

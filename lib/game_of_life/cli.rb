@@ -20,7 +20,7 @@ module GameOfLife
         game = GameOfLife::Renderers::TK.new
       when 'gtk'
         require 'game_of_life/renderers/gtk'
-        game = GameOfLife::Renderers::Gtk.new
+        game = GameOfLife::Renderers::GTK.new
       else
         raise 'Undefined renderer was called'
       end
