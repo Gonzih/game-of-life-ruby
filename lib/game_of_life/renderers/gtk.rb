@@ -22,8 +22,8 @@ module GameOfLife
 
         super
 
-        set_title 'Game of Life'
-        signal_connect 'destroy' do
+        set_title('Game of Life')
+        signal_connect('destroy') do
           Gtk.main_quit
         end
 
@@ -31,7 +31,7 @@ module GameOfLife
         set_default_size(get_width, get_height)
         fullscreen
 
-        set_window_position Gtk::Window::POS_CENTER
+        set_window_position(Gtk::Window::POS_CENTER)
 
         show_all
       end
