@@ -27,6 +27,7 @@ module GameOfLife
         end
 
         init_ui
+        set_default_size(get_width, get_height)
         fullscreen
 
         set_window_position Gtk::Window::POS_CENTER
@@ -45,7 +46,7 @@ module GameOfLife
       def init_ui
         @darea = Gtk::DrawingArea.new
 
-        @darea.signal_connect 'expose-event' do
+        @darea.signal_connect 'expose_event' do
           on_expose
         end
 
@@ -53,36 +54,41 @@ module GameOfLife
       end
 
       def on_expose
-        @cr = @darea.window.create_cairo_context
-        draw_colors
-        start_game
+        Gtk.timeout_remove(@_timeout_id) if @_timeout_id
+        @_timeout_id = Gtk.timeout_add(1000) { self.world_render }
+      end
+
+      def cr
+        @cr ||= @darea.window.create_cairo_context
       end
 
       def clear
-        @cr.set_source_rgb 1, 1, 1
-        @cr.paint
+        cr.set_source_rgb(1, 1, 1)
+        cr.paint
       end
 
-      def draw_colors
-        clear
-
-        @cr.set_source_rgb 0, 0, 0
-        @cr.rectangle 10, 15, 90, 60
-        @cr.fill
-
-        clear
-
-        @cr.set_source_rgb 0, 0, 0
-        @cr.rectangle 130, 15, 90, 60
-        @cr.fill
-
-        @cr.set_source_rgb 0, 0, 0
-        @cr.rectangle 250, 15, 90, 60
-        @cr.fill
+      def cell(x1, y1, w, h)
+        cr.set_source_rgb(0, 0, 0)
+        cr.rectangle(x1, y1, w, h)
+        cr.fill
       end
 
-      def start_game
-        @world = GameOfLife::World.new(get_height / @cell_size, get_width / @cell_size, )
+      def world
+        @world ||= GameOfLife::World.new(get_width / @cell_size, get_height / @cell_size)
+      end
+
+      def world_render
+        clear
+
+        world.cells.each_with_index do |col, x|
+          col.each_with_index do |_cell, y|
+            _x = x * @cell_size
+            _y = y * @cell_size
+            cell(_x, _y, @cell_size, @cell_size) if _cell.alive?
+          end
+        end
+
+        world.next!
       end
     end
   end
