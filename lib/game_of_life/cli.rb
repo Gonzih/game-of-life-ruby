@@ -16,6 +16,8 @@ module GameOfLife
         game = GameOfLife::Renderers::Cli.new
       when 'tk'
         game = GameOfLife::Renderers::TK.new
+      when 'gtk'
+        game = GameOfLife::Renderers::Gtk.new
       else
         raise 'Undefined renderer was called'
       end
